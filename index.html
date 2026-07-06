@@ -1,1 +1,923 @@
-hello
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document Dost | Legal aur Government Documents ka AI Dost</title>
+  <meta
+    name="description"
+    content="Document Dost helps users with court, police, RTI, affidavit, RTO, property, employment, grievance, and government-related documents across India."
+  />
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #0f4aa3;
+      --primary-dark: #0a3575;
+      --accent: #16a34a;
+      --border: #dbe3ef;
+      --soft: #eef4ff;
+      --warning: #fff7ed;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --max: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 64px 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #e8f0ff;
+      color: var(--primary);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .section-title {
+      font-size: 34px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 760px;
+      font-size: 17px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 14px 20px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .pill {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--primary);
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), #2d7ef7);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .hero {
+      padding: 64px 0 40px;
+      background:
+        radial-gradient(circle at top right, rgba(45,126,247,0.18), transparent 32%),
+        linear-gradient(180deg, #f8fbff 0%, #f4f7fb 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.95fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 50px;
+      line-height: 1.05;
+      margin: 16px 0;
+      max-width: 760px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 700px;
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .hero-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .hero-card p {
+      font-size: 15px;
+      margin-bottom: 16px;
+    }
+
+    .hero-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .mini-card {
+      background: var(--soft);
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid #d7e6ff;
+    }
+
+    .mini-card h4 {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .mini-card strong {
+      font-size: 22px;
+      display: block;
+      color: var(--primary);
+    }
+
+    .trust-grid,
+    .steps-grid,
+    .pricing-grid,
+    .dashboard-grid,
+    .admin-grid,
+    .faq-grid,
+    .service-grid,
+    .stats-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .trust-grid {
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 28px;
+    }
+
+    .steps-grid {
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 28px;
+    }
+
+    .pricing-grid {
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 28px;
+    }
+
+    .dashboard-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+      margin-top: 28px;
+    }
+
+    .admin-grid {
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 28px;
+    }
+
+    .faq-grid {
+      grid-template-columns: 1fr 1fr;
+      margin-top: 28px;
+    }
+
+    .service-grid {
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 28px;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 28px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .trust-card h3,
+    .step-card h3,
+    .faq-card h3,
+    .stat-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .step-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .category-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: 0.2s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .category-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .category-tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: var(--primary);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .category-card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .category-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .price-line {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 16px;
+    }
+
+    .price-note {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .service-card ul,
+    .pricing-card ul,
+    .dashboard-card ul,
+    .admin-card ul,
+    .checker-output ul {
+      margin-top: 14px;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .service-card li,
+    .pricing-card li,
+    .dashboard-card li,
+    .admin-card li,
+    .checker-output li {
+      margin-bottom: 8px;
+    }
+
+    .pricing-card.featured {
+      border: 2px solid var(--primary);
+      transform: translateY(-6px);
+    }
+
+    .pricing-price {
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--primary);
+      margin: 10px 0 8px;
+    }
+
+    .pricing-sub {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .flow-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      margin-top: 28px;
+      align-items: start;
+    }
+
+    .stepper {
+      display: grid;
+      gap: 12px;
+    }
+
+    .stepper-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: white;
+      border: 1px solid var(--border);
+      padding: 16px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .stepper-dot {
+      min-width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .input-group input,
+    .input-group select,
+    .input-group textarea {
+      width: 100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+      outline: none;
+    }
+
+    .input-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .input-group input:focus,
+    .input-group select:focus,
+    .input-group textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(45,126,247,0.12);
+    }
+
+    .output-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .checker-output {
+      background: var(--soft);
+      border: 1px solid #d7e6ff;
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .checker-output h4 {
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-size: 17px;
+    }
+
+    .free-premium {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .plan-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .plan-card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .plan-card .plan-price {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .highlight {
+      background: var(--warning);
+      border: 1px solid #fed7aa;
+      padding: 14px;
+      border-radius: 14px;
+      color: #9a3412;
+      margin-top: 14px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .payment-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .payment-methods {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .method-box {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+      background: #f8fbff;
+      font-weight: 700;
+    }
+
+    .dashboard-card,
+    .admin-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .dashboard-card h3,
+    .admin-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .table-like {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .table-row {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 0.8fr;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #f8fbff;
+      border: 1px solid #d7e6ff;
+      font-size: 14px;
+    }
+
+    .login-register {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .auth-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .auth-card h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .auth-card .btn {
+      margin-top: 14px;
+      width: 100%;
+    }
+
+    .footer {
+      background: #0f172a;
+      color: white;
+      padding: 50px 0 30px;
+      margin-top: 60px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .footer h3 {
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .footer p,
+    .footer li,
+    .footer a {
+      color: #cbd5e1;
+      font-size: 15px;
+    }
+
+    .footer ul {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-note {
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 18px;
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 60;
+      background: #25d366;
+      color: white;
+      border-radius: 999px;
+      padding: 14px 18px;
+      font-weight: 800;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid,
+      .flow-wrap,
+      .payment-grid,
+      .dashboard-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .categories-grid,
+      .pricing-grid,
+      .service-grid,
+      .admin-grid,
+      .steps-grid,
+      .trust-grid,
+      .stats-grid,
+      .free-premium,
+      .login-register,
+      .faq-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .nav-links,
+      .nav-actions {
+        width: 100%;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .categories-grid,
+      .pricing-grid,
+      .service-grid,
+      .admin-grid,
+      .steps-grid,
+      .trust-grid,
+      .stats-grid,
+      .free-premium,
+      .login-register,
+      .faq-grid,
+      .payment-methods,
+      .output-grid,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .table-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stat-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#home" class="brand">
+        <div class="brand-mark">DD</div>
+        <div>
+          <div>Document Dost</div>
+          <small style="display:block;color:#64748b;font-size:12px;">Legal aur government documents ka AI dost</small>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#categories">Categories</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#how-it-works">How it Works</a>
+        <a href="#problem-checker">Problem Checker</a>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-secondary" href="#auth">Login / Register</a>
+        <a class="btn btn-primary" href="#categories">Start Your Document</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge">India-first legal + government document platform</span>
+        <h1>Court, Police, RTI, Affidavit, RTO aur Government Documents — AI ke saath aasaan</h1>
+        <p>
+          Document Dost aapko legal, complaint, affidavit, court, RTI, police, property, employment, grievance aur government documents ke liye guided help deta hai. Hindi aur English dono mein support, state-wise guidance aur WhatsApp fallback ke saath.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#categories" class="btn btn-primary">Start Your Document</a>
+          <a href="#problem-checker" class="btn btn-secondary">Describe Your Problem</a>
+        </div>
+
+        <div class="hero-pills">
+          <span class="pill">Hindi + English</span>
+          <span class="pill">AI Guided Drafting Flow</span>
+          <span class="pill">Template / AI Fill / Ready Draft</span>
+          <span class="pill">State-wise document help</span>
+          <span class="pill">WhatsApp payment fallback</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Quick Start Flow</h3>
+        <p>Category choose kijiye, guided questions ka jawab dijiye, aur apne document ke liye best option select kijiye — Template, AI Fill ya Ready Draft.</p>
+
+        <div class="hero-stat-grid">
+          <div class="mini-card">
+            <h4>Free Access</h4>
+            <strong>3 Free Questions</strong>
+            <span>ya 1 basic template/document preview</span>
+          </div>
+          <div class="mini-card">
+            <h4>Paid Plans</h4>
+            <strong>₹39 se start</strong>
+            <span>final price depends on document type</span>
+          </div>
+          <div class="mini-card">
+            <h4>Popular Use Cases</h4>
+            <strong>RTI, Police, Affidavit</strong>
+            <span>court aur grievance flows bhi</span>
+          </div>
+          <div class="mini-card">
+            <h4>Fallback Support</h4>
+            <strong>WhatsApp + Manual Payment</strong>
+            <span>urgent users ke liye</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="trust-grid">
+        <div class="card trust-card">
+          <h3>Hindi + English</h3>
+          <p>Users ko language barrier ke bina legal aur government documents samajhne aur banwane mein help.</p>
+        </div>
+        <div class="card trust-card">
+          <h3>AI Guided Questions</h3>
+          <p>Plain language mein sawal, taaki document drafting process confusing na lage.</p>
+        </div>
+        <div class="card trust-card">
+          <h3>State-wise Help</h3>
+          <p>State aur department ke hisaab se issue classify karne aur सही category तक पहुँचने में मदद.</p>
+        </div>
+        <div class="card trust-card">
+          <h3>WhatsApp Fallback</h3>
+          <p>Net slow ho, urgent kaam ho, ya manual payment chahiye — WhatsApp support flow ready.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How Document Dost Works</h2>
+      <p class="section-subtitle">
+        Website ka flow simple rakha gaya hai: problem samjho, right category choose karo, guided questions do, aur document output type select karo.
+      </p>
+
+      <div class="steps-grid">
+        <div class="card step-card">
+          <div class="step-number">1</div>
+          <h3>Choose Problem or Category</h3>
+          <p>Police complaint, RTI, affidavit, RTO, property, bank issue, salary dispute, grievance aur aur
